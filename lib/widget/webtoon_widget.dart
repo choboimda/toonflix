@@ -17,16 +17,19 @@ class Webtoon extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(
-            builder: (context) =>
-                DetailScreen(title: title, thumb: thumb, id: id),
-          ),
+          /* MaterialPageRoute(
+            builder: (context) => DetailScreen(
+              title: title,
+              thumb: thumb,
+              id: id,
+            ),
+          ), */
 
           // 애니메이션 효과 넣기
-          /*          PageRouteBuilder(
+          PageRouteBuilder(
             transitionsBuilder:
                 (context, animation, secondaryAnimation, child) {
-              var begin = const Offset(0.0, 1.0);
+              var begin = const Offset(1.0, 0.0);
               var end = Offset.zero;
               var curve = Curves.ease;
               var tween =
@@ -36,31 +39,42 @@ class Webtoon extends StatelessWidget {
                 child: child,
               );
             },
-            pageBuilder: (context, anmation, secondaryAnimation) =>
-                DetailScreen(id: id, title: title, thumb: thumb),
-          ), */
+            pageBuilder: (
+              context,
+              anmation,
+              secondaryAnimation,
+            ) =>
+                DetailScreen(
+              id: id,
+              title: title,
+              thumb: thumb,
+            ),
+          ),
         );
       },
       child: Column(
         children: [
-          Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                boxShadow: [
-                  BoxShadow(
-                    blurRadius: 15,
-                    offset: const Offset(10, 10),
-                    color: Colors.black.withOpacity(0.5),
-                  )
-                ]),
-            clipBehavior: Clip.hardEdge,
-            width: 250,
-            child: Image.network(
-              thumb,
-              headers: const {
-                "User-Agent":
-                    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36",
-              },
+          Hero(
+            tag: id,
+            child: Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  boxShadow: [
+                    BoxShadow(
+                      blurRadius: 15,
+                      offset: const Offset(10, 10),
+                      color: Colors.black.withOpacity(0.5),
+                    )
+                  ]),
+              clipBehavior: Clip.hardEdge,
+              width: 250,
+              child: Image.network(
+                thumb,
+                headers: const {
+                  "User-Agent":
+                      "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36",
+                },
+              ),
             ),
           ),
           const SizedBox(
